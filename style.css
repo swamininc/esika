@@ -1,0 +1,297 @@
+/* =============================================
+   ESIKA — Feuille de styles principale
+   Couleurs : bleu profond #0b6e8f, jaune #f5b32a
+   Polices   : Sora (titres), Nunito Sans (texte)
+   ============================================= */
+
+/* ----- REMISE À ZÉRO & BASE ----- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  color: #1a1a2e;
+  background-color: #f8f9fa;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ----- CONTENEUR CENTRÉ ----- */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ----- EN-TÊTE ----- */
+.header {
+  background-color: #0b6e8f;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.logo__pin {
+  color: #f5b32a;
+  font-size: 1rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav__link {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.nav__link:hover {
+  color: #f5b32a;
+}
+
+.nav__link--cta {
+  background-color: #f5b32a;
+  color: #0b6e8f;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav__link--cta:hover {
+  background-color: #ffffff;
+  color: #0b6e8f;
+}
+
+/* ----- SECTION HÉROS ----- */
+.hero {
+  background-color: #0b6e8f;
+  color: #ffffff;
+  padding: 5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero__title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.hero__title--accent {
+  color: #f5b32a;
+}
+
+.hero__subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----- BARRE DE RECHERCHE ----- */
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.search__city {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  color: #1a1a2e;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.search__input {
+  flex: 1 1 220px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.search__input:focus {
+  box-shadow: 0 0 0 3px rgba(245, 179, 42, 0.6);
+}
+
+.search__btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #f5b32a;
+  color: #0b6e8f;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search__btn:hover {
+  background-color: #ffc947;
+}
+
+/* ----- CONSTELLATION (décoration) ----- */
+.constellation {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dot {
+  position: absolute;
+  background-color: rgba(245, 179, 42, 0.3);
+  border-radius: 50%;
+}
+
+.dot--1 { width: 120px; height: 120px; top: -40px;  left: -40px; }
+.dot--2 { width:  60px; height:  60px; top:  20px;  right: 10%;  }
+.dot--3 { width:  80px; height:  80px; bottom: -20px; left: 15%; }
+.dot--4 { width:  40px; height:  40px; bottom: 30px;  right: 5%; }
+.dot--5 { width: 200px; height: 200px; top: -80px;  right: -60px; opacity: 0.15; }
+
+/* ----- SECTION CATÉGORIES ----- */
+.categories {
+  padding: 4rem 0;
+}
+
+.section__title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0b6e8f;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.categories__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ----- CARTE CATÉGORIE ----- */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.card:hover {
+  border-color: #f5b32a;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(11, 110, 143, 0.12);
+}
+
+.card__icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.card__name {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0b6e8f;
+}
+
+/* ----- PIED DE PAGE ----- */
+.footer {
+  background-color: #0b6e8f;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 1.5rem 0;
+  margin-top: 4rem;
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.footer__brand {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ----- RESPONSIVE (mobile) ----- */
+@media (max-width: 600px) {
+  .nav__link:not(.nav__link--cta) {
+    display: none;
+  }
+
+  .hero {
+    padding: 3rem 0 2.5rem;
+  }
+
+  .categories__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
