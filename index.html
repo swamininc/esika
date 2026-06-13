@@ -20,8 +20,14 @@
         <span class="logo__text">esika</span>
       </a>
       <nav class="nav">
-        <a href="#categories" class="nav__link">Catégories</a>
-        <a href="#" class="nav__link nav__link--cta">Inscrire mon business</a>
+        <a href="#categories" class="nav__link" data-i18n="navCategories">Catégories</a>
+        <a href="#" class="nav__link nav__link--cta" data-i18n="navCta">Inscrire mon business</a>
+        <!-- Sélecteur de langue -->
+        <div class="lang-switcher" role="group" aria-label="Choisir la langue">
+          <button class="lang-btn active" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ln">LIN</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -38,32 +44,37 @@
     </div>
 
     <div class="container hero__inner">
-      <h1 class="hero__title">
+      <!-- data-i18n-html : ce titre contient du HTML interne (span coloré),
+           donc on utilise innerHTML plutôt que textContent -->
+      <h1 class="hero__title" data-i18n-html="heroTitle">
         Trouvez les meilleurs<br />
         <span class="hero__title--accent">professionnels</span> près de vous
       </h1>
-      <p class="hero__subtitle">
+      <p class="hero__subtitle" data-i18n="heroSubtitle">
         Avocats, cliniques, garages, pharmacies… vérifiés et recommandés en RDC.
       </p>
 
       <!-- Barre de recherche -->
       <form class="search" action="#" method="get">
         <select class="search__city" name="ville" aria-label="Choisir une ville">
-          <option value="">Toutes les villes</option>
+          <option value="" data-i18n="searchCityDefault">Toutes les villes</option>
           <option value="kinshasa">Kinshasa</option>
           <option value="lubumbashi">Lubumbashi</option>
           <option value="goma">Goma</option>
           <option value="matadi">Matadi</option>
           <option value="kisangani">Kisangani</option>
+          <option value="mbuji-mayi">Mbuji-Mayi</option>
+          <option value="kananga">Kananga</option>
         </select>
         <input
           class="search__input"
           type="text"
           name="q"
+          data-i18n-ph="searchPlaceholder"
           placeholder="Médecin, garage, restaurant…"
           aria-label="Rechercher un professionnel"
         />
-        <button class="search__btn" type="submit">Rechercher</button>
+        <button class="search__btn" type="submit" data-i18n="searchBtn">Rechercher</button>
       </form>
     </div>
   </section>
@@ -71,47 +82,47 @@
   <!-- ===== CATÉGORIES ===== -->
   <section id="categories" class="categories">
     <div class="container">
-      <h2 class="section__title">Parcourir par catégorie</h2>
+      <h2 class="section__title" data-i18n="sectionTitle">Parcourir par catégorie</h2>
       <div class="categories__grid">
 
         <a href="#" class="card">
           <span class="card__icon">⚖️</span>
-          <span class="card__name">Avocats</span>
+          <span class="card__name" data-i18n="catLawyers">Avocats</span>
         </a>
 
         <a href="#" class="card">
           <span class="card__icon">🏥</span>
-          <span class="card__name">Cliniques</span>
+          <span class="card__name" data-i18n="catClinics">Cliniques</span>
         </a>
 
         <a href="#" class="card">
           <span class="card__icon">🦷</span>
-          <span class="card__name">Dentistes</span>
+          <span class="card__name" data-i18n="catDentists">Dentistes</span>
         </a>
 
         <a href="#" class="card">
           <span class="card__icon">🔧</span>
-          <span class="card__name">Garages</span>
+          <span class="card__name" data-i18n="catGarages">Garages</span>
         </a>
 
         <a href="#" class="card">
           <span class="card__icon">🛒</span>
-          <span class="card__name">Épiceries</span>
+          <span class="card__name" data-i18n="catGroceries">Épiceries</span>
         </a>
 
         <a href="#" class="card">
           <span class="card__icon">💊</span>
-          <span class="card__name">Pharmacies</span>
+          <span class="card__name" data-i18n="catPharmacies">Pharmacies</span>
         </a>
 
         <a href="#" class="card">
           <span class="card__icon">🍽️</span>
-          <span class="card__name">Restaurants</span>
+          <span class="card__name" data-i18n="catRestaurants">Restaurants</span>
         </a>
 
         <a href="#" class="card">
           <span class="card__icon">🏨</span>
-          <span class="card__name">Hôtels</span>
+          <span class="card__name" data-i18n="catHotels">Hôtels</span>
         </a>
 
       </div>
@@ -121,10 +132,11 @@
   <!-- ===== PIED DE PAGE ===== -->
   <footer class="footer">
     <div class="container footer__inner">
-      <span class="footer__brand">esika &mdash; par Swamin Inc.</span>
+      <span class="footer__brand" data-i18n="footerBrand">esika — par Swamin Inc.</span>
       <span class="footer__copy">&copy; 2025</span>
     </div>
   </footer>
 
+  <script src="lang.js"></script>
 </body>
 </html>
