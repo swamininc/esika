@@ -27,6 +27,7 @@ const translations = {
     catHotels:        'Hôtels',
     catSchools:       'Écoles',
     catChurches:      'Églises',
+    bizSectionTitle:  'Commerces disponibles',
     footerBrand:      'esika — par Swamin Inc.',
   },
 
@@ -49,6 +50,7 @@ const translations = {
     catHotels:        'Hotels',
     catSchools:       'Schools',
     catChurches:      'Churches',
+    bizSectionTitle:  'Available businesses',
     footerBrand:      'esika — by Swamin Inc.',
   },
 
@@ -72,6 +74,7 @@ const translations = {
     catHotels:        'Ba otele',
     catSchools:       'Eteyelo',
     catChurches:      'Eklezya',
+    bizSectionTitle:  'Biznesi oyo ezali',
     footerBrand:      'esika — na Swamin Inc.',
   },
 

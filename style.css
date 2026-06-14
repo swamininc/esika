@@ -281,6 +281,83 @@ a {
   color: #ffffff;
 }
 
+/* ----- SECTION COMMERCES ----- */
+.businesses {
+  padding: 4rem 0;
+  background-color: #eef6f9;
+}
+
+.businesses__empty {
+  text-align: center;
+  color: #666;
+  padding: 2rem 0;
+}
+
+/* ----- CARTE COMMERCE ----- */
+.biz-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  border-left: 4px solid #0b6e8f;
+}
+
+.biz-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.biz-card__name {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.1rem;
+  color: #0b6e8f;
+}
+
+.biz-card__plan {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+.biz-card__plan--base    { background-color: #e0e0e0; color: #444; }
+.biz-card__plan--pro     { background-color: #fff3cd; color: #856404; }
+.biz-card__plan--premium { background-color: #f5b32a; color: #0b6e8f; }
+
+.biz-card__desc {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.biz-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.biz-card__city {
+  font-size: 0.9rem;
+  color: #777;
+  text-transform: capitalize;
+}
+
+.biz-card__phone {
+  background-color: #25D366;
+  color: #ffffff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.biz-card__phone:hover {
+  background-color: #1ebe5d;
+}
+
 /* ----- SÉLECTEUR DE LANGUE ----- */
 .lang-switcher {
   display: flex;
