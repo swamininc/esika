@@ -222,12 +222,95 @@ textarea.field__input {
   color: #666;
 }
 
+.admin-subsection-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  color: #e67e22;
+  margin-bottom: 0.75rem;
+}
+
+.admin-divider {
+  border: none;
+  border-top: 2px solid #f0f0f0;
+  margin: 1.5rem 0;
+}
+
+.admin-biz-row--pending {
+  border-left: 3px solid #e67e22;
+  padding-left: 0.75rem;
+}
+
+.admin-biz-row__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-approve {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-approve:hover {
+  background-color: #219a52;
+}
+
+.badge-views {
+  font-size: 0.8rem;
+  color: #888;
+}
+
 .badge-inactive {
   background-color: #eee;
   color: #999;
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
+}
+
+/* ----- MESSAGE DE SUCCÈS (formulaire d'inscription) ----- */
+.register-success {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.register-success__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: #27ae60;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.register-success h2 {
+  font-family: 'Sora', sans-serif;
+  color: #0b6e8f;
+  margin-bottom: 0.5rem;
+}
+
+.register-success p {
+  color: #555;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.register-note {
+  font-size: 0.82rem;
+  color: #999;
+  margin-top: 1.25rem;
+  line-height: 1.5;
 }
 
 /* ----- RESPONSIVE ----- */

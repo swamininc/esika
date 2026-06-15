@@ -81,13 +81,15 @@ btnLogout.addEventListener('click', async function() {
 });
 
 // ---------------------------------------------------------------
-// CHARGER LA LISTE DES COMMERCES (tous, actifs et inactifs)
+// CHARGER LA LISTE DES COMMERCES
+// Sépare les fiches en attente (soumises publiquement, non validées)
+// des fiches actives/gérées par l'admin.
 // ---------------------------------------------------------------
 async function loadBusinesses() {
   var { data, error } = await db
     .from('businesses')
     .select('*')
-    .order('name');
+    .order('created_at', { ascending: false });
 
   if (error) {
     adminBizList.innerHTML = '<p class="form-error">Erreur de chargement.</p>';
@@ -99,19 +101,71 @@ async function loadBusinesses() {
     return;
   }
 
-  adminBizList.innerHTML = data.map(function(b) {
-    return `
-      <div class="admin-biz-row ${b.active ? '' : 'admin-biz-row--inactive'}">
-        <div class="admin-biz-row__info">
-          <strong>${b.name}</strong>
-          <span>${b.category} — ${b.city}</span>
-          <span class="biz-card__plan biz-card__plan--${b.plan}">${b.plan}</span>
-          ${!b.active ? '<span class="badge-inactive">Inactif</span>' : ''}
+  // Séparer les fiches en attente des fiches actives/inactives gérées
+  var pending = data.filter(function(b) { return !b.active && !b.verified; });
+  var managed = data.filter(function(b) { return b.active || b.verified; });
+
+  var html = '';
+
+  // Section fiches en attente de validation
+  if (pending.length > 0) {
+    html += `<h3 class="admin-subsection-title">⏳ En attente de validation (${pending.length})</h3>`;
+    html += pending.map(function(b) {
+      return `
+        <div class="admin-biz-row admin-biz-row--pending">
+          <div class="admin-biz-row__info">
+            <strong>${b.name}</strong>
+            <span>${b.category} — ${b.city}</span>
+            <span>${b.phone_whatsapp || ''}</span>
+          </div>
+          <div class="admin-biz-row__actions">
+            <button class="btn-approve" onclick="approveBusiness(${b.id})">Valider</button>
+            <button class="btn-edit" onclick="editBusiness(${b.id})">Modifier</button>
+          </div>
         </div>
-        <button class="btn-edit" onclick="editBusiness(${b.id})">Modifier</button>
-      </div>
-    `;
-  }).join('');
+      `;
+    }).join('');
+    html += '<hr class="admin-divider" />';
+  }
+
+  // Section fiches gérées
+  if (managed.length === 0) {
+    html += '<p>Aucune fiche validée pour le moment.</p>';
+  } else {
+    html += managed.map(function(b) {
+      return `
+        <div class="admin-biz-row ${b.active ? '' : 'admin-biz-row--inactive'}">
+          <div class="admin-biz-row__info">
+            <strong>${b.name}</strong>
+            <span>${b.category} — ${b.city}</span>
+            <span class="biz-card__plan biz-card__plan--${b.plan}">${b.plan}</span>
+            <span class="badge-views">👁 ${b.views || 0} vue${b.views !== 1 ? 's' : ''}</span>
+            ${!b.active ? '<span class="badge-inactive">Inactif</span>' : ''}
+          </div>
+          <button class="btn-edit" onclick="editBusiness(${b.id})">Modifier</button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  adminBizList.innerHTML = html;
+}
+
+// ---------------------------------------------------------------
+// VALIDER UNE FICHE EN ATTENTE
+// Active la fiche et la marque comme vérifiée d'un seul clic.
+// ---------------------------------------------------------------
+async function approveBusiness(id) {
+  var { error } = await db
+    .from('businesses')
+    .update({ active: true, verified: true, plan: 'base' })
+    .eq('id', id);
+
+  if (error) {
+    alert('Erreur lors de la validation : ' + error.message);
+    return;
+  }
+  loadBusinesses();
 }
 
 // ---------------------------------------------------------------

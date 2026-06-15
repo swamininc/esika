@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esika — Inscrire mon business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin-body">
+
+  <!-- ===== EN-TÊTE ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__pin">&#9679;</span>
+        <span class="logo__text">esika</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="nav__link">← Retour à l'accueil</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== FORMULAIRE D'INSCRIPTION ===== -->
+  <section class="admin-section">
+    <div class="admin-card">
+      <h1 class="admin-card__title">Inscrire mon business</h1>
+      <p class="admin-card__subtitle">
+        Remplis ce formulaire pour apparaître sur Esika. Ton dossier sera examiné
+        et activé sous 48h par notre équipe.
+      </p>
+
+      <!-- Formulaire visible par défaut -->
+      <form id="register-form">
+        <div class="fields-grid">
+
+          <div class="field">
+            <label class="field__label" for="biz-name">Nom du business *</label>
+            <input class="field__input" type="text" id="biz-name" required />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="biz-category">Catégorie *</label>
+            <select class="field__input" id="biz-category" required>
+              <option value="">-- Choisir --</option>
+              <option value="avocats">Avocats</option>
+              <option value="cliniques">Cliniques</option>
+              <option value="dentistes">Dentistes</option>
+              <option value="garages">Garages</option>
+              <option value="epiceries">Épiceries</option>
+              <option value="pharmacies">Pharmacies</option>
+              <option value="restaurants">Restaurants</option>
+              <option value="hotels">Hôtels</option>
+              <option value="ecoles">Écoles</option>
+              <option value="eglises">Églises</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="biz-city">Ville *</label>
+            <select class="field__input" id="biz-city" required>
+              <option value="">-- Choisir --</option>
+              <option value="kinshasa">Kinshasa</option>
+              <option value="lubumbashi">Lubumbashi</option>
+              <option value="goma">Goma</option>
+              <option value="matadi">Matadi</option>
+              <option value="kisangani">Kisangani</option>
+              <option value="mbuji-mayi">Mbuji-Mayi</option>
+              <option value="kananga">Kananga</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="biz-phone">Numéro WhatsApp *</label>
+            <input class="field__input" type="text" id="biz-phone" placeholder="+243810000000" required />
+          </div>
+
+          <div class="field field--full">
+            <label class="field__label" for="biz-address">Adresse</label>
+            <input class="field__input" type="text" id="biz-address" placeholder="Avenue, quartier, commune" />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="biz-hours">Heures d'ouverture</label>
+            <input class="field__input" type="text" id="biz-hours" placeholder="Lun-Sam 8h-18h" />
+          </div>
+
+          <div class="field field--full">
+            <label class="field__label" for="biz-description">Description du business</label>
+            <textarea class="field__input" id="biz-description" rows="3"
+              placeholder="Décris en quelques phrases ce que tu offres…"></textarea>
+          </div>
+
+        </div>
+
+        <p class="register-note">
+          En soumettant ce formulaire, tu acceptes d'être contacté par Esika pour
+          confirmer ton inscription. La publication est gratuite pendant la période de lancement.
+        </p>
+
+        <p id="form-error" class="form-error hidden"></p>
+
+        <div class="form-actions">
+          <button class="btn-primary" type="submit" id="btn-submit">Envoyer ma demande</button>
+        </div>
+      </form>
+
+      <!-- Message de succès, caché par défaut, affiché après soumission -->
+      <div id="success-message" class="hidden">
+        <div class="register-success">
+          <span class="register-success__icon">✓</span>
+          <h2>Demande envoyée !</h2>
+          <p>Merci. Ton dossier sera examiné et activé sous 48h. On te contactera sur WhatsApp pour confirmer.</p>
+          <a href="index.html" class="btn-primary" style="display:inline-block; margin-top:1rem;">
+            Retour à l'accueil
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="register.js"></script>
+</body>
+</html>

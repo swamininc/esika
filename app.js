@@ -72,7 +72,7 @@ function renderBusinesses(businesses) {
         <p class="biz-card__desc">${b.description || ''}</p>
         <div class="biz-card__footer">
           <span class="biz-card__city">📍 ${b.city}</span>
-          ${b.phone_whatsapp ? `<a class="biz-card__phone" href="https://wa.me/${b.phone_whatsapp.replace(/\D/g,'')}">WhatsApp</a>` : ''}
+          ${b.phone_whatsapp ? `<a class="biz-card__phone" href="https://wa.me/${b.phone_whatsapp.replace(/\D/g,'')}" onclick="countView(${b.id})">WhatsApp</a>` : ''}
         </div>
       </div>
     `;
@@ -82,6 +82,28 @@ function renderBusinesses(businesses) {
 // ---------------------------------------------------------------
 // Lancement : on appelle fetchBusinesses() au chargement de la page
 // ---------------------------------------------------------------
+// ---------------------------------------------------------------
+// countView() — Incrémente le compteur de visites d'un commerce
+//
+// Appelée quand un visiteur clique sur le bouton WhatsApp.
+// "rpc" appelle une fonction SQL dans Supabase qui ajoute 1 au
+// compteur views du commerce concerné.
+// ---------------------------------------------------------------
+async function countView(businessId) {
+  await fetch(
+    `${SUPABASE_URL}/rest/v1/rpc/increment_views`,
+    {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ business_id: businessId })
+    }
+  );
+}
+
 fetchBusinesses()
   .then(renderBusinesses)
   .catch(function(err) {
