@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esika — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin-body">
+
+  <!-- ===== EN-TÊTE ADMIN ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__pin">&#9679;</span>
+        <span class="logo__text">esika</span>
+        <span class="admin-badge">Admin</span>
+      </a>
+      <!-- Bouton déconnexion, visible seulement quand connecté -->
+      <button id="btn-logout" class="btn-logout hidden">Se déconnecter</button>
+    </div>
+  </header>
+
+  <!-- ===== ÉCRAN DE CONNEXION ===== -->
+  <!-- Affiché par défaut. admin.js le cache quand l'admin est connecté. -->
+  <section id="login-section" class="admin-section">
+    <div class="admin-card">
+      <h1 class="admin-card__title">Connexion Admin</h1>
+      <p class="admin-card__subtitle">Réservé à Swamin Inc.</p>
+
+      <form id="login-form">
+        <div class="field">
+          <label class="field__label" for="email">Email</label>
+          <input class="field__input" type="email" id="email" required />
+        </div>
+        <div class="field">
+          <label class="field__label" for="password">Mot de passe</label>
+          <input class="field__input" type="password" id="password" required />
+        </div>
+        <p id="login-error" class="form-error hidden"></p>
+        <button class="btn-primary" type="submit">Se connecter</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== PANNEAU ADMIN ===== -->
+  <!-- Caché par défaut. admin.js l'affiche quand l'admin est connecté. -->
+  <section id="admin-section" class="admin-section hidden">
+    <div class="container">
+
+      <!-- Formulaire ajouter / modifier un commerce -->
+      <div class="admin-card">
+        <h2 class="admin-card__title" id="form-title">Ajouter un commerce</h2>
+
+        <form id="business-form">
+          <!-- Champ caché : stocke l'id quand on est en mode édition -->
+          <input type="hidden" id="biz-id" />
+
+          <div class="fields-grid">
+            <div class="field">
+              <label class="field__label" for="biz-name">Nom *</label>
+              <input class="field__input" type="text" id="biz-name" required />
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="biz-category">Catégorie *</label>
+              <select class="field__input" id="biz-category" required>
+                <option value="">-- Choisir --</option>
+                <option value="avocats">Avocats</option>
+                <option value="cliniques">Cliniques</option>
+                <option value="dentistes">Dentistes</option>
+                <option value="garages">Garages</option>
+                <option value="epiceries">Épiceries</option>
+                <option value="pharmacies">Pharmacies</option>
+                <option value="restaurants">Restaurants</option>
+                <option value="hotels">Hôtels</option>
+                <option value="ecoles">Écoles</option>
+                <option value="eglises">Églises</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="biz-city">Ville *</label>
+              <select class="field__input" id="biz-city" required>
+                <option value="">-- Choisir --</option>
+                <option value="kinshasa">Kinshasa</option>
+                <option value="lubumbashi">Lubumbashi</option>
+                <option value="goma">Goma</option>
+                <option value="matadi">Matadi</option>
+                <option value="kisangani">Kisangani</option>
+                <option value="mbuji-mayi">Mbuji-Mayi</option>
+                <option value="kananga">Kananga</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="biz-plan">Plan</label>
+              <select class="field__input" id="biz-plan">
+                <option value="base">Base — 10 $</option>
+                <option value="pro">Pro — 25 $</option>
+                <option value="premium">Premium — 50 $</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="biz-phone">WhatsApp</label>
+              <input class="field__input" type="text" id="biz-phone" placeholder="+243810000000" />
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="biz-hours">Heures d'ouverture</label>
+              <input class="field__input" type="text" id="biz-hours" placeholder="Lun-Sam 8h-18h" />
+            </div>
+
+            <div class="field field--full">
+              <label class="field__label" for="biz-address">Adresse</label>
+              <input class="field__input" type="text" id="biz-address" />
+            </div>
+
+            <div class="field field--full">
+              <label class="field__label" for="biz-description">Description</label>
+              <textarea class="field__input" id="biz-description" rows="3"></textarea>
+            </div>
+
+            <div class="field field--checks">
+              <label class="check-label">
+                <input type="checkbox" id="biz-verified" />
+                Vérifié
+              </label>
+              <label class="check-label">
+                <input type="checkbox" id="biz-active" checked />
+                Actif (visible sur le site)
+              </label>
+            </div>
+          </div>
+
+          <p id="form-error" class="form-error hidden"></p>
+          <p id="form-success" class="form-success hidden"></p>
+
+          <div class="form-actions">
+            <button class="btn-primary" type="submit" id="btn-submit">Ajouter</button>
+            <button class="btn-secondary hidden" type="button" id="btn-cancel">Annuler</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Liste des commerces -->
+      <div class="admin-card">
+        <h2 class="admin-card__title">Commerces enregistrés</h2>
+        <div id="admin-biz-list">Chargement…</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Librairie officielle Supabase chargée depuis un CDN -->
+  <!-- CDN = serveur public qui héberge des librairies prêtes à l'emploi -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
