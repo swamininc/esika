@@ -15,6 +15,18 @@ const SUPABASE_URL = 'https://htkfebopjkbkmquqjmwt.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0a2ZlYm9wamtia21xdXFqbXd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNzI2MjYsImV4cCI6MjA5Njk0ODYyNn0.eHfMJJUuUjBkLvJ-ZZasv-4GY0ga3sHIPItwgGeO2Ik';
 
 // ---------------------------------------------------------------
+// ÉTAT DE LA RECHERCHE
+//
+// allBusinesses : la liste COMPLÈTE reçue de Supabase, jamais filtrée.
+// activeCategory : la catégorie cliquée par l'utilisateur (ou null).
+// On garde ces deux infos en mémoire pour pouvoir recalculer la
+// liste affichée à chaque fois qu'un filtre change, sans refaire
+// de requête à Supabase.
+// ---------------------------------------------------------------
+let allBusinesses = [];
+let activeCategory = null;
+
+// ---------------------------------------------------------------
 // fetchBusinesses() — Va chercher les commerces dans Supabase
 //
 // "fetch" envoie une requête HTTP à l'API de Supabase.
@@ -58,7 +70,11 @@ function renderBusinesses(businesses) {
   var container = document.getElementById('businesses-list');
 
   if (businesses.length === 0) {
-    container.innerHTML = '<p class="businesses__empty">Aucun commerce disponible pour le moment.</p>';
+    // Deux cas différents : soit la base est vide, soit le filtre
+    // appliqué (ville/catégorie/recherche) n'a juste rien trouvé.
+    container.innerHTML = allBusinesses.length === 0
+      ? '<p class="businesses__empty">Aucun commerce disponible pour le moment.</p>'
+      : '<p class="businesses__empty">Aucun résultat pour ce filtre.</p>';
     return;
   }
 
@@ -80,8 +96,48 @@ function renderBusinesses(businesses) {
 }
 
 // ---------------------------------------------------------------
-// Lancement : on appelle fetchBusinesses() au chargement de la page
+// applyFilters() — Recalcule la liste affichée à partir de
+// allBusinesses, selon la ville choisie, le texte recherché et
+// la catégorie cliquée. Appelée chaque fois qu'un filtre change.
 // ---------------------------------------------------------------
+function applyFilters() {
+  var city  = document.getElementById('search-city').value;
+  var query = document.getElementById('search-input').value.trim().toLowerCase();
+
+  var filtered = allBusinesses.filter(function(b) {
+    var matchCity     = !city || b.city === city;
+    var matchCategory = !activeCategory || b.category === activeCategory;
+    var matchQuery    = !query ||
+      b.name.toLowerCase().includes(query) ||
+      (b.description || '').toLowerCase().includes(query);
+    return matchCity && matchCategory && matchQuery;
+  });
+
+  renderBusinesses(filtered);
+  updateFilterStatus(filtered.length);
+}
+
+// ---------------------------------------------------------------
+// updateFilterStatus() — Affiche ou cache la barre "Filtré par…"
+// au-dessus de la liste, selon qu'un filtre est actif ou non.
+// ---------------------------------------------------------------
+function updateFilterStatus(count) {
+  var statusBar  = document.getElementById('filter-status');
+  var statusText = document.getElementById('filter-status-text');
+
+  var city  = document.getElementById('search-city').value;
+  var query = document.getElementById('search-input').value.trim();
+  var hasFilter = activeCategory || city || query;
+
+  if (!hasFilter) {
+    statusBar.classList.add('hidden');
+    return;
+  }
+
+  statusText.textContent = count + ' résultat' + (count !== 1 ? 's' : '');
+  statusBar.classList.remove('hidden');
+}
+
 // ---------------------------------------------------------------
 // countView() — Incrémente le compteur de visites d'un commerce
 //
@@ -104,8 +160,45 @@ async function countView(businessId) {
   );
 }
 
+// ---------------------------------------------------------------
+// ÉVÉNEMENTS DE FILTRAGE
+// ---------------------------------------------------------------
+
+// La barre de recherche : on empêche le rechargement de la page
+// (preventDefault) et on filtre directement dans le navigateur.
+document.querySelector('.search').addEventListener('submit', function(e) {
+  e.preventDefault();
+  applyFilters();
+});
+
+// Les cartes de catégories : un clic filtre par catégorie et
+// fait défiler la page jusqu'à la liste des commerces.
+document.querySelectorAll('.card').forEach(function(card) {
+  card.addEventListener('click', function(e) {
+    e.preventDefault();
+    activeCategory = card.dataset.category;
+    applyFilters();
+    document.getElementById('businesses').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Le bouton "Effacer le filtre" : remet tout à zéro.
+document.getElementById('btn-clear-filter').addEventListener('click', function() {
+  activeCategory = null;
+  document.getElementById('search-city').value = '';
+  document.getElementById('search-input').value = '';
+  applyFilters();
+});
+
+// ---------------------------------------------------------------
+// Lancement : on charge la liste complète une seule fois, puis on
+// affiche le résultat du filtre (vide au départ = tout afficher).
+// ---------------------------------------------------------------
 fetchBusinesses()
-  .then(renderBusinesses)
+  .then(function(data) {
+    allBusinesses = data;
+    applyFilters();
+  })
   .catch(function(err) {
     var container = document.getElementById('businesses-list');
     container.innerHTML = '<p class="businesses__empty">Erreur de chargement. Réessaie plus tard.</p>';

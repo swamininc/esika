@@ -293,6 +293,37 @@ a {
   padding: 2rem 0;
 }
 
+/* ----- BARRE DE FILTRE ACTIF ----- */
+.filter-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.filter-status button {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.25rem 0.7rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #0b6e8f;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filter-status button:hover {
+  background-color: #ffffff;
+}
+
+/* ----- UTILITAIRE : cache un élément complètement ----- */
+.hidden {
+  display: none !important;
+}
+
 /* ----- CARTE COMMERCE ----- */
 .biz-card {
   background-color: #ffffff;

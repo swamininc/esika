@@ -56,7 +56,7 @@
 
       <!-- Barre de recherche -->
       <form class="search" action="#" method="get">
-        <select class="search__city" name="ville" aria-label="Choisir une ville">
+        <select class="search__city" id="search-city" name="ville" aria-label="Choisir une ville">
           <option value="" data-i18n="searchCityDefault">Toutes les villes</option>
           <optgroup label="🇨🇩 RDC">
             <option value="kinshasa">Kinshasa</option>
@@ -76,6 +76,7 @@
         </select>
         <input
           class="search__input"
+          id="search-input"
           type="text"
           name="q"
           data-i18n-ph="searchPlaceholder"
@@ -93,52 +94,52 @@
       <h2 class="section__title" data-i18n="sectionTitle">Parcourir par catégorie</h2>
       <div class="categories__grid">
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="avocats">
           <span class="card__icon">⚖️</span>
           <span class="card__name" data-i18n="catLawyers">Avocats</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="cliniques">
           <span class="card__icon">🏥</span>
           <span class="card__name" data-i18n="catClinics">Cliniques</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="dentistes">
           <span class="card__icon">🦷</span>
           <span class="card__name" data-i18n="catDentists">Dentistes</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="garages">
           <span class="card__icon">🔧</span>
           <span class="card__name" data-i18n="catGarages">Garages</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="epiceries">
           <span class="card__icon">🛒</span>
           <span class="card__name" data-i18n="catGroceries">Épiceries</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="pharmacies">
           <span class="card__icon">💊</span>
           <span class="card__name" data-i18n="catPharmacies">Pharmacies</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="restaurants">
           <span class="card__icon">🍽️</span>
           <span class="card__name" data-i18n="catRestaurants">Restaurants</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="hotels">
           <span class="card__icon">🏨</span>
           <span class="card__name" data-i18n="catHotels">Hôtels</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="ecoles">
           <span class="card__icon">🏫</span>
           <span class="card__name" data-i18n="catSchools">Écoles</span>
         </a>
 
-        <a href="#" class="card">
+        <a href="#businesses" class="card" data-category="eglises">
           <span class="card__icon">⛪</span>
           <span class="card__name" data-i18n="catChurches">Églises</span>
         </a>
@@ -151,6 +152,14 @@
   <section id="businesses" class="businesses">
     <div class="container">
       <h2 class="section__title" data-i18n="bizSectionTitle">Commerces disponibles</h2>
+
+      <!-- Barre de filtre actif, cachée par défaut. app.js l'affiche
+           dès qu'une recherche, une ville ou une catégorie est sélectionnée. -->
+      <div id="filter-status" class="filter-status hidden">
+        <span id="filter-status-text"></span>
+        <button id="btn-clear-filter" type="button">✕ Effacer le filtre</button>
+      </div>
+
       <!-- Les cartes sont insérées ici par app.js -->
       <div id="businesses-list">
         <p class="businesses__empty">Chargement…</p>
