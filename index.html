@@ -58,13 +58,21 @@
       <form class="search" action="#" method="get">
         <select class="search__city" name="ville" aria-label="Choisir une ville">
           <option value="" data-i18n="searchCityDefault">Toutes les villes</option>
-          <option value="kinshasa">Kinshasa</option>
-          <option value="lubumbashi">Lubumbashi</option>
-          <option value="goma">Goma</option>
-          <option value="matadi">Matadi</option>
-          <option value="kisangani">Kisangani</option>
-          <option value="mbuji-mayi">Mbuji-Mayi</option>
-          <option value="kananga">Kananga</option>
+          <optgroup label="🇨🇩 RDC">
+            <option value="kinshasa">Kinshasa</option>
+            <option value="lubumbashi">Lubumbashi</option>
+            <option value="goma">Goma</option>
+            <option value="matadi">Matadi</option>
+            <option value="kisangani">Kisangani</option>
+            <option value="mbuji-mayi">Mbuji-Mayi</option>
+            <option value="kananga">Kananga</option>
+          </optgroup>
+          <optgroup label="🇨🇦 Canada">
+            <option value="edmonton">Edmonton</option>
+            <option value="calgary">Calgary</option>
+            <option value="toronto">Toronto</option>
+            <option value="montreal">Montréal</option>
+          </optgroup>
         </select>
         <input
           class="search__input"
