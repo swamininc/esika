@@ -20,7 +20,13 @@
         <span class="logo__text">esika</span>
       </a>
       <nav class="nav">
-        <a href="index.html" class="nav__link">← Retour à l'accueil</a>
+        <a href="index.html" class="nav__link" data-i18n="navBack">← Retour à l'accueil</a>
+        <!-- Sélecteur de langue -->
+        <div class="lang-switcher" role="group" aria-label="Choisir la langue">
+          <button class="lang-btn active" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ln">LIN</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -28,8 +34,8 @@
   <!-- ===== FORMULAIRE D'INSCRIPTION ===== -->
   <section class="admin-section">
     <div class="admin-card">
-      <h1 class="admin-card__title">Inscrire mon business</h1>
-      <p class="admin-card__subtitle">
+      <h1 class="admin-card__title" data-i18n="regTitle">Inscrire mon business</h1>
+      <p class="admin-card__subtitle" data-i18n="regSubtitle">
         Remplis ce formulaire pour apparaître sur Esika. Ton dossier sera examiné
         et activé sous 48h par notre équipe.
       </p>
@@ -39,12 +45,12 @@
         <div class="fields-grid">
 
           <div class="field">
-            <label class="field__label" for="biz-name">Nom du business *</label>
+            <label class="field__label" for="biz-name" data-i18n="regName">Nom du business *</label>
             <input class="field__input" type="text" id="biz-name" required />
           </div>
 
           <div class="field">
-            <label class="field__label" for="biz-category">Catégorie *</label>
+            <label class="field__label" for="biz-category" data-i18n="regCategory">Catégorie *</label>
             <select class="field__input" id="biz-category" required>
               <option value="">-- Choisir --</option>
               <option value="avocats">Avocats</option>
@@ -61,7 +67,7 @@
           </div>
 
           <div class="field">
-            <label class="field__label" for="biz-city">Ville *</label>
+            <label class="field__label" for="biz-city" data-i18n="regCity">Ville *</label>
             <select class="field__input" id="biz-city" required>
               <option value="">-- Choisir --</option>
               <optgroup label="🇨🇩 RDC">
@@ -83,37 +89,49 @@
           </div>
 
           <div class="field">
-            <label class="field__label" for="biz-phone">Numéro WhatsApp *</label>
-            <input class="field__input" type="text" id="biz-phone" placeholder="+243810000000" required />
-          </div>
-
-          <div class="field field--full">
-            <label class="field__label" for="biz-address">Adresse</label>
-            <input class="field__input" type="text" id="biz-address" placeholder="Avenue, quartier, commune" />
+            <label class="field__label" for="biz-plan" data-i18n="regPlan">Plan souhaité</label>
+            <select class="field__input" id="biz-plan">
+              <option value="base">Base</option>
+              <option value="pro">Pro</option>
+              <option value="premium">Premium</option>
+            </select>
           </div>
 
           <div class="field">
-            <label class="field__label" for="biz-hours">Heures d'ouverture</label>
-            <input class="field__input" type="text" id="biz-hours" placeholder="Lun-Sam 8h-18h" />
+            <label class="field__label" for="biz-phone" data-i18n="regPhone">Numéro WhatsApp *</label>
+            <input class="field__input" type="text" id="biz-phone"
+              data-i18n-ph="regPhonePh" placeholder="+243810000000" required />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="biz-hours" data-i18n="regHours">Heures d'ouverture</label>
+            <input class="field__input" type="text" id="biz-hours"
+              data-i18n-ph="regHoursPh" placeholder="Lun-Sam 8h-18h" />
           </div>
 
           <div class="field field--full">
-            <label class="field__label" for="biz-description">Description du business</label>
+            <label class="field__label" for="biz-address" data-i18n="regAddress">Adresse</label>
+            <input class="field__input" type="text" id="biz-address"
+              data-i18n-ph="regAddressPh" placeholder="Avenue, quartier, commune" />
+          </div>
+
+          <div class="field field--full">
+            <label class="field__label" for="biz-description" data-i18n="regDesc">Description du business</label>
             <textarea class="field__input" id="biz-description" rows="3"
+              data-i18n-ph="regDescPh"
               placeholder="Décris en quelques phrases ce que tu offres…"></textarea>
           </div>
 
         </div>
 
-        <p class="register-note">
-          En soumettant ce formulaire, tu acceptes d'être contacté par Esika pour
-          confirmer ton inscription. La publication est gratuite pendant la période de lancement.
+        <p class="register-note" data-i18n="regNote">
+          En soumettant ce formulaire, tu acceptes d'être contacté par notre équipe pour confirmer ton inscription.
         </p>
 
         <p id="form-error" class="form-error hidden"></p>
 
         <div class="form-actions">
-          <button class="btn-primary" type="submit" id="btn-submit">Envoyer ma demande</button>
+          <button class="btn-primary" type="submit" id="btn-submit" data-i18n="regSubmit">Envoyer ma demande</button>
         </div>
       </form>
 
@@ -121,9 +139,21 @@
       <div id="success-message" class="hidden">
         <div class="register-success">
           <span class="register-success__icon">✓</span>
-          <h2>Demande envoyée !</h2>
-          <p>Merci. Ton dossier sera examiné et activé sous 48h. On te contactera sur WhatsApp pour confirmer.</p>
-          <a href="index.html" class="btn-primary" style="display:inline-block; margin-top:1rem;">
+          <h2 data-i18n="regSuccessTitle">Demande envoyée !</h2>
+          <p data-i18n="regSuccessText">Merci. Ton dossier sera examiné et activé sous 48h. On te contactera sur WhatsApp pour confirmer.</p>
+
+          <!-- Section paiement Stripe — affichée uniquement pour les villes canadiennes -->
+          <div id="stripe-section" class="stripe-section hidden">
+            <hr class="stripe-divider" />
+            <h3 data-i18n="stripeTitle">Active ta visibilité dès maintenant</h3>
+            <p class="stripe-subtitle" data-i18n="stripeSubtitle">Paiement sécurisé via Stripe</p>
+            <a id="stripe-pay-btn" href="#" class="btn-primary stripe-pay-btn" target="_blank" rel="noopener">
+              Payer maintenant
+            </a>
+            <p class="register-note" data-i18n="stripeNote">Notre équipe activera ta fiche dès réception du paiement.</p>
+          </div>
+
+          <a href="index.html" class="btn-primary" style="display:inline-block; margin-top:1.5rem;" data-i18n="regBack">
             Retour à l'accueil
           </a>
         </div>
@@ -133,6 +163,7 @@
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="lang.js"></script>
   <script src="register.js"></script>
 </body>
 </html>
