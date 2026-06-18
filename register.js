@@ -18,9 +18,9 @@ var canadianCities = ['edmonton', 'calgary', 'toronto', 'montreal', 'ottawa', 'v
 
 // Liens Stripe (mode test) — un lien par plan, en CAD
 var stripeLinks = {
-  base:    'https://buy.stripe.com/test_8x2aEX6rB9Zg1Js1oE2cg00',
-  pro:     'https://buy.stripe.com/test_14A3cvdU35J01Js6IY2cg01',
-  premium: 'https://buy.stripe.com/test_6oU28rg2b9Zgdsa3wM2cg02',
+  base:    'https://buy.stripe.com/7sY14ncOjg122JA81D5AQ00',
+  pro:     'https://buy.stripe.com/14A00j01x2ac1FwdlX5AQ01',
+  premium: 'https://buy.stripe.com/8x29ATbKf7uw97Y1Df5AQ02',
 };
 
 // Étiquettes des plans avec prix CAD (pour le texte du bouton Stripe)
