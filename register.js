@@ -14,7 +14,7 @@ const { createClient } = window.supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Villes canadiennes : ces clients paient via Stripe
-var canadianCities = ['edmonton', 'calgary', 'toronto', 'montreal'];
+var canadianCities = ['edmonton', 'calgary', 'toronto', 'montreal', 'ottawa', 'vancouver'];
 
 // Liens Stripe (mode test) — un lien par plan, en CAD
 var stripeLinks = {
